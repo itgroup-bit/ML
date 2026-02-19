@@ -1,0 +1,250 @@
+id: b6c2f568-5610-4281-b7f7-83456c179263
+name: Multi-Level IoT Intrusion Detection System
+project_id: d32aac68-132d-472a-a7e2-b8a2e9ca153b
+global_imports: []
+python_global_imports: ''
+r_global_imports: ''
+requirements: []
+linux_packages: []
+environment_variables: []
+is_public: false
+organization_id: c2ddeea6-f39f-4986-a555-8b04f006e8cd
+layers:
+- blocks:
+  - auto_size: false
+    canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    compute_settings: null
+    description: Performs Sequential Forward Selection on normalized features to identify
+      optimal 10-feature subset, evaluating each candidate incrementally on validation
+      set (TR2) using Random Forest classifier
+    height: 1000
+    id: 12059898-5faf-4101-82eb-19985bbc028a
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    name: sfs_level2_wrapper
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 6000
+    y: 2800
+  - auto_size: false
+    canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    compute_settings: null
+    description: Computes comprehensive metrics and reproducibility report comparing
+      multi-level RF predictions (5 classes, 10 features) against paper benchmarks
+      using confusion matrix, per-class metrics, and visualizations
+    height: 1000
+    id: 1424070e-6614-465f-9c01-42a3e31841b9
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    name: compute_metrics_and_reproducibility_report
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 10000
+    y: 4200
+  - auto_size: false
+    canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    compute_settings: null
+    description: Trains two Random Forest models on separate datasets (TR1 and TR2)
+      using 10 selected features, then combines predictions via majority voting to
+      classify 4,500 test samples into 5 classes
+    height: 1000
+    id: 1e078d78-150a-43e4-8591-909bf6ad615c
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    name: train_multilevel_rf_with_majority_voting
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 8000
+    y: 2800
+  - auto_size: false
+    canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    compute_settings:
+      compute_environment_type: 1
+    description: Selects optimal features using genetic algorithm with correlation
+      scoring and fitness-based optimization on normalized training data.
+    height: 1000
+    id: 23dc5a20-2770-4e06-8224-9c933832a2d8
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    name: level1_and_level2_feature_selection
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 6000
+    y: 0
+  - auto_size: false
+    canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    compute_settings: null
+    description: Implements fuzzy inference system with triangular membership functions
+      (Normal/Low/Medium/High), 16 fuzzy rules for 4 attack types (Probing/DoS/U2R/R2L),
+      MIN operator rule evaluation, and RMS defuzzification to classify intrusion
+      severity levels
+    height: 1000
+    id: 4f91191d-db0a-45a1-b060-59698711f8ad
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    name: fuzzy_inference_system
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 10000
+    y: 2800
+  - auto_size: false
+    canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    compute_settings: null
+    description: Trains baseline Random Forest classifier using all 41 features on
+      combined training data (TR1+TR2) and computes comprehensive evaluation metrics
+      including confusion matrix, per-class precision/recall/F1, and overall accuracy
+    height: 1000
+    id: 7d832e6b-75a9-49a7-a0d6-39b5d89db87a
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    name: baseline_rf_full_training
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 4000
+    y: 2800
+  - auto_size: false
+    canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    compute_settings:
+      compute_environment_type: 1
+    description: Tuning Random Forest on IoT intrusion detection via grid search (3-fold
+      CV) with confidence scoring, accuracy metrics, and feature importance rankings
+    height: 1000
+    id: 89cb2482-afd8-4513-abad-2dda50204cf9
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    name: rf_hyperparameter_tuning
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 4000
+    y: 1400
+  - auto_size: false
+    canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    compute_settings:
+      compute_environment_type: 1
+    description: Samples 14K records, encodes 3 categorical features, splits into
+      9.5K training + 4.5K test, then normalizes 38 numerical features to [0,1] range
+    height: 1000
+    id: ba725fc3-f961-4f34-b7ad-36efdb601009
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    name: preprocess_and_split
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 2000
+    y: 0
+  - auto_size: false
+    canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    compute_settings:
+      compute_environment_type: 1
+    description: Generates comprehensive statistics report on attack type distributions,
+      train/test splits, normalized features, and feature-target correlations
+    height: 1000
+    id: c2f6e37d-d4bb-471c-983f-d1b3301fe876
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    name: detailed_statistics
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 4000
+    y: 0
+  - auto_size: false
+    canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    compute_settings:
+      compute_environment_type: 1
+    description: Loads KDD intrusion detection dataset and analyzes structure including
+      row/column counts, data types, missing values, and sample preview
+    height: 1000
+    id: f84e5e94-52e0-4cb5-980d-b02c90deaca9
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    name: load_and_explore
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 0
+    y: 0
+  canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+  edges:
+  - canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    id: 0bad6ef1-12af-41d1-a6b4-b5eef99ca5c5
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    source: c2f6e37d-d4bb-471c-983f-d1b3301fe876
+    target: 23dc5a20-2770-4e06-8224-9c933832a2d8
+  - canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    id: 59c26309-b2d2-49b4-ab69-0fb160a151bc
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    source: ba725fc3-f961-4f34-b7ad-36efdb601009
+    target: 23dc5a20-2770-4e06-8224-9c933832a2d8
+  - canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    id: 6773e652-84a2-4eed-a2f6-61beb0c2fa55
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    source: 1e078d78-150a-43e4-8591-909bf6ad615c
+    target: 4f91191d-db0a-45a1-b060-59698711f8ad
+  - canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    id: 72b5495c-bf46-473b-be51-a518ad68cc99
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    source: ba725fc3-f961-4f34-b7ad-36efdb601009
+    target: c2f6e37d-d4bb-471c-983f-d1b3301fe876
+  - canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    id: 97216bbf-9647-4957-b9a2-484575b2d596
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    source: f84e5e94-52e0-4cb5-980d-b02c90deaca9
+    target: ba725fc3-f961-4f34-b7ad-36efdb601009
+  - canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    id: a7eaf9cd-0a3d-4dc7-9003-4a8d8d63c8bc
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    source: 12059898-5faf-4101-82eb-19985bbc028a
+    target: 1e078d78-150a-43e4-8591-909bf6ad615c
+  - canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    id: a9ada609-7e7e-44a3-a78a-c846ae511b9e
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    source: 7d832e6b-75a9-49a7-a0d6-39b5d89db87a
+    target: 12059898-5faf-4101-82eb-19985bbc028a
+  - canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    id: ac2b070c-019e-44fc-a2cb-5516dd6581ee
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    source: 1e078d78-150a-43e4-8591-909bf6ad615c
+    target: 1424070e-6614-465f-9c01-42a3e31841b9
+  - canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    id: d8804530-10bb-4945-8de2-e9e643b01b8f
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    source: ba725fc3-f961-4f34-b7ad-36efdb601009
+    target: 7d832e6b-75a9-49a7-a0d6-39b5d89db87a
+  - canvas_id: b6c2f568-5610-4281-b7f7-83456c179263
+    id: e220ff07-3793-435c-8f3e-87b53d21b613
+    layer_id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+    source: ba725fc3-f961-4f34-b7ad-36efdb601009
+    target: 89cb2482-afd8-4513-abad-2dda50204cf9
+  id: 3edc93e7-a57d-4a8f-aaf5-7557c439e6d5
+  name: Multi-Level IoT Intrusion Detection System
+  type: 1
+assets: []
