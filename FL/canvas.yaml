@@ -1,0 +1,189 @@
+id: 14222c20-a24b-4568-8c0e-68709d16c548
+name: Explainable Federated Learning IoT Detection
+project_id: a704c302-dab8-4cd9-aa50-ff5a9bc25c18
+global_imports: []
+python_global_imports: ''
+r_global_imports: ''
+requirements: []
+linux_packages: []
+environment_variables: []
+is_public: false
+organization_id: deb6f849-b865-4fc8-b172-6e6d6a1e8248
+layers:
+- blocks:
+  - auto_size: false
+    canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    compute_settings: null
+    description: Visualizes LSTM-IDS training metrics with side-by-side plots of cross-entropy/proximal/total
+      loss and train/validation accuracy curves across epochs
+    height: 1000
+    id: 1935474e-e451-4624-bbda-adb2a056ff6f
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    name: training_results_chart
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 6000
+    y: 0
+  - auto_size: false
+    canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    compute_settings: null
+    description: Defines bidirectional LSTM for network intrusion detection with FedProx
+      federated learning support
+    height: 1000
+    id: 2cf2cf47-a563-40f6-8a53-490904edff05
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    name: lstm_ids_model
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 2000
+    y: 0
+  - auto_size: false
+    canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    compute_settings: null
+    description: "Generates stacked bar charts showing Non-IID label distribution\
+      \ across 10 federated clients for different Dirichlet concentration parameters\
+      \ (\u03B1 = 0.1, 0.5, 1.0)."
+    height: 1000
+    id: 2fd2a4b2-a33e-4304-8b8a-e15925def025
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    name: visualize_partitions
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 6000
+    y: 3000
+  - auto_size: false
+    canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    compute_settings: null
+    description: Trains bidirectional LSTM-IDS model for 15 epochs with FedProx optimization
+      on local client data, computing cross-entropy and proximal losses with per-class
+      validation metrics
+    height: 1000
+    id: 6acbc2fd-5408-4e35-b125-75baae7c4fc3
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    name: train_local_client
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 4000
+    y: 0
+  - auto_size: false
+    canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    compute_settings: null
+    description: Generates synthetic IoT security dataset with 9 attack classes (DDoS,
+      DoS, Mirai, ransomware, etc.) and benign traffic with 40 features and imbalanced
+      class distribution
+    height: 1000
+    id: 73f69550-81c4-47a0-a3e1-8d3424da06ef
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    name: generate_synthetic_data
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 0
+    y: 3000
+  - auto_size: false
+    canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    compute_settings: null
+    description: Normalizes IoT features using Min-Max scaling, encodes attack labels,
+      and splits data 80/20 for training/testing
+    height: 1000
+    id: cd905701-b6d6-4f27-ae89-4179b53e7813
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    name: preprocess_data
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 2000
+    y: 3000
+  - auto_size: false
+    canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    compute_settings: null
+    description: Generates synthetic federated learning dataset with 78 network features,
+      5 traffic classes (BENIGN/DoS/PortScan/BruteForce/Infiltration), and creates
+      8-timestep LSTM sequences using sliding windows
+    height: 1000
+    id: f907100d-9405-4ba2-b8a0-02e8f3072aa4
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    name: generate_client_data
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 0
+    y: 0
+  - auto_size: false
+    canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    compute_settings: null
+    description: Distributes training data across 10 federated clients using Dirichlet-based
+      non-IID partitioning with configurable heterogeneity
+    height: 1000
+    id: fce1b55e-b5cf-47b7-89bb-532914075ac7
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    name: dirichlet_partition
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 4000
+    y: 3000
+  canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+  edges:
+  - canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    id: 13200387-8d8c-4ab0-addc-8e14059dbbab
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    source: 73f69550-81c4-47a0-a3e1-8d3424da06ef
+    target: cd905701-b6d6-4f27-ae89-4179b53e7813
+  - canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    id: 4a8fffd2-0891-46a0-a654-f95b8c94d9e4
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    source: fce1b55e-b5cf-47b7-89bb-532914075ac7
+    target: 2fd2a4b2-a33e-4304-8b8a-e15925def025
+  - canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    id: 8d0eb3c6-69df-44d2-8097-bc6a8b885bce
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    source: f907100d-9405-4ba2-b8a0-02e8f3072aa4
+    target: 2cf2cf47-a563-40f6-8a53-490904edff05
+  - canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    id: d1ebc76a-efd2-4c2f-bb8e-9b9b0dd08cd6
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    source: 2cf2cf47-a563-40f6-8a53-490904edff05
+    target: 6acbc2fd-5408-4e35-b125-75baae7c4fc3
+  - canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    id: d475bea8-e11c-41f0-9863-dfb97dc7f7c7
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    source: cd905701-b6d6-4f27-ae89-4179b53e7813
+    target: fce1b55e-b5cf-47b7-89bb-532914075ac7
+  - canvas_id: 14222c20-a24b-4568-8c0e-68709d16c548
+    id: e441c740-2343-4efe-9d5d-b9b7c349c61b
+    layer_id: 395504cc-4ec6-4ada-916e-980390242c5a
+    source: 6acbc2fd-5408-4e35-b125-75baae7c4fc3
+    target: 1935474e-e451-4624-bbda-adb2a056ff6f
+  id: 395504cc-4ec6-4ada-916e-980390242c5a
+  name: Explainable Federated Learning IoT Detection
+  type: 1
+assets: []
